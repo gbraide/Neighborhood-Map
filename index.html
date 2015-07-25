@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Neighborhood Map</title>
+	<meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<script src="js/jquery.min.js"></script><!--jQuery v1.11.3-->
+	<link rel="stylesheet" href="css/bootstrap.min.css"><!--Bootstrap CSS-->
+	<script src="js/bootstrap.min.js"></script><!--Bootstrap JS-->
+	<link rel="stylesheet" href="css/style.css"><!--Custom CSS-->
+	<script type='text/javascript' src='js/knockout-3.3.0.js'></script><!--KnockoutJS-->	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6TdaJ-Slw99o7mZnNI6_lJJ1G_HJ7YDc"></script><!--Google Maps API-->	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><!--Font Awesome-->		
+	<link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'><!--Google Font-->
+</head>
+<body>	
+
+
+	<!-- Main Content -->
+	<div class="wrap">
+		<div class="container">
+			<div class="row search-area">
+				<!-- Search Bar -->
+			<div id="searchBox" class="input-group input-group-lg">
+				<input class="form-control" type="text" placeholder="Enter keyword..." data-bind="textInput: searchString">
+					<ul class="list" data-bind="foreach: locations">
+						<li class="listElement">
+							<h5> <div data-bind="text: title, click: reveal"></h5>
+						</li>
+					</ul>
+			</div>			
+			</div>
+		</div>
+	</div>
+	<!-- Google Map -->
+	<div id="map-canvas"></div>
+	<script type="text/javascript" src="js/app.js"></script><!--Custom JS-->
+</body>
+</html>
