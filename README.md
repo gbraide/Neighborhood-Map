@@ -8,3 +8,11 @@ Added additional functionality to this application, including:
 	 Listview to support simple browsing of all locations. 
 	 
 Researched and implemented third-party APIs that provide additional information about each of these locations (New York Times & Wikipedia).
+
+Run application by launching index.html within any browser.
+
+*References*
+Udacity.com
+w3schools.com
+wikipedia.com
+http://www.nytimes.com/
