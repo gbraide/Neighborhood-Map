@@ -5,9 +5,18 @@ var infoWindow;
 /* Initialize Google Map */
 var Map = function() {
 
-	// Map settings
+	if ( typeof google != 'object' || typeof google.maps != 'object') {
+		// display error message
+		$('.message').html('<h1>!ERROR!</h1></br><h3><b>Are you connected to the internet?</b></h3>');
+
+		// quit
+		return false;
+	}
+	
+	// Map Settings
+	var myLatLng = new google.maps.LatLng(38.9226843, -77.0194377);
 	var mapOptions = {
-		center: {lat: 38.9052569, lng: -77.0661625},
+		center: myLatLng,
 		zoom: 13,
 		disableDefaultUI: true
 	};
@@ -17,7 +26,7 @@ var Map = function() {
 
 	// Instantiate global info window
 	infoWindow = new google.maps.InfoWindow({
-		maxWidth: 260
+		maxWidth: 200
 	});
 	return true;
 };
@@ -62,11 +71,11 @@ var ViewModel = function() {
 		this.info = ko.computed(function(){
 			return '<div>'+
 						'<h4>' + temp.title() + '</h4>'+
+						temp.keywords().join(', ')+'<br><br>'+
 						'<div class="hidden-xs hidden-sm col-md-12">'+temp.streetViewImg()+'</div>'+
-						'<div><p>'+
-							temp.keywords().join(', ')+'<br><br>'+
-							temp.wikiInfo()+'<br>'+
-							temp.nytInfo()+'<br>'+
+						'<div><p>'+'<br>'+						
+							temp.wikiInfo()+
+							temp.nytInfo()+
 						'</p></div>'+
 					'</div>';
 		});
@@ -81,7 +90,6 @@ var ViewModel = function() {
 			infoWindow.setContent(temp.info());
 			infoWindow.open(map, temp.marker);	
 		};
-
 		// Set marker map
 		this.marker.setMap(map);
 	};
@@ -147,8 +155,7 @@ var ViewModel = function() {
 				var words  = location().keywords();
 
 				// Interate over all words
-				for (var i = 0; i < words.length; i++) {
-					
+				for (var i = 0; i < words.length; i++) {				
 					// If word contains searchString, push location
 					if (words[i].toLowerCase().indexOf(filter) != -1) {
 						filteredLocations.push(location());

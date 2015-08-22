@@ -7,21 +7,14 @@ body {
 	font-family: 'Architects Daughter', cursive;
 	color: #676858;
 }
+
 /* Full screen map */
-#map-canvas {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
+#map-canvas {position:absolute; width: 100%; height: 100%; padding: 20px; }
+
 span {
 	background-color: white;
 	opacity: 0.85;
 }
-
 img {
 	width: 100%;
 	max-width: 300px;
@@ -30,38 +23,22 @@ img {
 input {
 	width: 100%;
 }
-
-h5,
 .listElement {
-	margin-top: 0;
-	margin-bottom: 0;
+	padding: 0px;
 }
 ul
 {
     list-style-type: none;
 }
-.list {
-	background-color: white;
-	opacity: 0.85;
-}
-
 .listElement:hover {
 	color: black;
 	background-color: #efefef;
-	line-height: 150%;
 }
-
 .wrap {
 	min-height: 100%;
+	min-width: 100%;
 	height: auto;
+	width: auto;
 	margin: 0 auto -65px;
 	padding: 0 0 65px;
-}
-#searchBox {
-	position: fixed;
-	text-align: center;
-	top: 60%;
-	left: 5%;
-	width: 30%;
-	z-index: 1;	
 }
