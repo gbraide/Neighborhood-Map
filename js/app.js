@@ -14,7 +14,7 @@ var Map = function() {
 	}
 	
 	// Map Settings
-	var myLatLng = new google.maps.LatLng(38.9226843, -77.0194377);
+	var myLatLng = new google.maps.LatLng(38.8976763, -77.0365298);
 	var mapOptions = {
 		center: myLatLng,
 		zoom: 13,
@@ -54,6 +54,8 @@ var ViewModel = function() {
 			animation: google.maps.Animation.DROP,
 			title: title,
 		});
+		
+		//marker.addListener('click', markerAnimate);
 
 		// Google Street View
 		this.streetViewImg = ko.observable('<img class="bgimg" src="http://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + street + ', ' + city + '">');
@@ -66,13 +68,14 @@ var ViewModel = function() {
 
 		// Reference to current location for use in event handlers
 		var temp = this;
+		var bounce = this;
 
 		// Infowindow information
 		this.info = ko.computed(function(){
 			return '<div>'+
 						'<h4>' + temp.title() + '</h4>'+
-						temp.keywords().join(', ')+'<br><br>'+
-						'<div class="hidden-xs hidden-sm col-md-12">'+temp.streetViewImg()+'</div>'+
+						temp.keywords().join(', ')+'<br>'+
+						'<div class="col-md-12">'+temp.streetViewImg()+'</div>'+
 						'<div><p>'+'<br>'+						
 							temp.wikiInfo()+
 							temp.nytInfo()+
@@ -80,16 +83,20 @@ var ViewModel = function() {
 					'</div>';
 		});
 
-		// Add click event to show info window
+		// Add click event to show info window and animate marker
 		google.maps.event.addListener(this.marker, 'click', function() {
-			temp.reveal();
+			bounce.reveal();
+			temp.reveal();		
 		});
 
-		this.reveal = function() {
+		this.reveal = function() {	
 			map.setCenter(temp.marker.getPosition());
 			infoWindow.setContent(temp.info());
-			infoWindow.open(map, temp.marker);	
+			infoWindow.open(map, temp.marker);
+			  
+			bounce.marker.setAnimation(google.maps.Animation.BOUNCE);			  					
 		};
+		
 		// Set marker map
 		this.marker.setMap(map);
 	};
@@ -211,7 +218,7 @@ var ViewModel = function() {
 			// Wikipedia request error handling
 			var wikiRequestTimeout = setTimeout(function(){
 				self.locations()[index].wikiInfo('No Wikipedia info to dispay.<br>');
-			}, 1000); // 1 second timeout error
+			}, 10000); 
 
 			// Request
 			$.ajax({

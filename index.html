@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Neighborhood Map</title>
-	<meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=Edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">	
+<title>Neighborhood Map</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">	
 
-	<link rel="stylesheet" href="css/bootstrap.min.css"><!--Bootstrap CSS-->
-	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="css/style.css"><!--Custom CSS-->
-	<!--  <link rel="stylesheet" href="css/offline-theme-dark-indicator.css">-->
-	
-	<script src="js/jquery.min.js"></script><!--jQuery-->		
-	<script src="js/bootstrap.min.js"></script><!--Bootstrap JS-->	
-	<script type='text/javascript' src='js/knockout-3.3.0.js'></script><!--KnockoutJS-->	
-	<!--  <script type='text/javascript' src='js/offline.js'></script>-->
-	
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6TdaJ-Slw99o7mZnNI6_lJJ1G_HJ7YDc"></script><!--Google Maps API-->	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><!--Font Awesome-->		
-	<link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'><!--Google Font-->
+<link rel="stylesheet" href="css/bootstrap.min.css"><!--Bootstrap CSS-->
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/style.css"><!--Custom CSS-->
+
+<script src="js/jquery.min.js"></script><!--jQuery-->		
+<script src="js/bootstrap.min.js"></script><!--Bootstrap JS-->	
+<script type='text/javascript' src='js/knockout-3.3.0.js'></script><!--KnockoutJS-->	
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6TdaJ-Slw99o7mZnNI6_lJJ1G_HJ7YDc"></script><!--Google Maps API-->	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><!--Font Awesome-->		
+<link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'><!--Google Font-->
 </head>
 <body>	
-<div class="wrap message">
-	<!-- Google Map -->
-	<div id="map-canvas"></div>
-	<div class="row">
-		<div class="col-xs-6 col-sm-4">
-		<div class="panel-group" id="accordion">
-		   <div class="panel panel-default">	   
-		        <div class="panel-heading">
-		            <h4 class="panel-title">
-		            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">My Neighborhood		            
-		            <input class="form-control" type="text" placeholder="Enter keyword..." data-bind="textInput: searchString">
-		            </a>
-		           </h4>
-		        </div>
-				
-		        <div id="collapseOne" class="panel-collapse collapse in">
-		          <div class="panel-body">
-		            <ul data-bind="foreach: locations">
-						<li class="listElement">
-							<h4 data-bind="text: title, click: reveal"></h4>
-						</li>		
-		            </ul>
-		          </div>
-		        </div>
-		  </div>
-		 </div>
-	    </div>
-</div>
+	<div class="wrap message">
+	
+	    <!-- Fixed navbar at bottom of page -->
+	    <nav class="navbar navbar-default navbar-fixed-bottom">
+	      <div class="container">
+	        <div class="navbar-header">	        
+	       
+	        <!-- The navigation bar is replaced by a button in the bottom right corner, on smaller devices. -->
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="#">My Neighborhood</a>	          
+	        </div>
+	        <div id="navbar" class="collapse navbar-collapse">
+	          <ul class="nav navbar-nav">
+	            <li id="searchField"><input class="form-control" type="text" placeholder="Enter keyword..." data-bind="textInput: searchString"></li>
+	            <li class="dropdown">
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
+	              <ul class="dropdown-menu" data-bind="foreach: locations">					
+					<li class="listElement">
+						<h6 data-bind="text: title, click: reveal"></h6>
+					</li>
+	              </ul>
+	            </li>
+	          </ul>
+	        </div>
+	      </div>
+	    </nav>
+		
+		<!-- Google Map -->
+		<div id="map-canvas"></div>
+	</div>
 	<script type="text/javascript" src="js/app.js"></script><!--Custom JS-->
 </body>
 </html>
