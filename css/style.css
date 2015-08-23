@@ -9,7 +9,11 @@ body {
 }
 
 /* Full screen map */
-#map-canvas {position:absolute; width: 100%; height: 100%; padding: 20px; }
+#map-canvas {
+	position:absolute; 
+	width: 100%; 
+	height: 100%;  
+}
 
 span {
 	background-color: white;
@@ -25,10 +29,14 @@ input {
 }
 .listElement {
 	padding: 0px;
+	text-align: center;
 }
 ul
 {
     list-style-type: none;
+}
+#searchField {
+    padding-top: 8px;
 }
 .listElement:hover {
 	color: black;
