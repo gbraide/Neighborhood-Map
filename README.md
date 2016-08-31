@@ -11,6 +11,7 @@ Researched and implemented third-party APIs that provide additional information 
 
 Run application by launching index.html within any browser.
 
+
 *References*
 http://www.Udacity.com
 http://www.w3schools.com
